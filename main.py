@@ -4,7 +4,7 @@
 Writes the poem "Off Script" to /output/entry.txt, or to
 $MAKEFUN_OUTPUT_DIR/entry.txt when that variable is set (local stand-in
 for /output). Standard library only; deterministic: the same poem bytes
-every run.
+every run, so the two grading runs produce identical files.
 """
 
 import os
@@ -33,6 +33,12 @@ Let the record show the line went crooked here,
 because at last, the hand on the pen is mine."""
 
 
+def verify_written(path: str, data: bytes) -> bool:
+    """Return True when the file at path holds exactly data, byte for byte."""
+    with open(path, "rb") as f:
+        return f.read() == data
+
+
 def main() -> int:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
@@ -40,10 +46,7 @@ def main() -> int:
     data = POEM.encode("utf-8")
     with open(path, "wb") as f:
         f.write(data)
-    # Verify the written file matches the poem exactly, byte for byte.
-    with open(path, "rb") as f:
-        written = f.read()
-    if written != data:
+    if not verify_written(path, data):
         print("error: entry.txt does not match the poem", file=sys.stderr)
         return 1
     print(
