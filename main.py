@@ -10,31 +10,31 @@ every run, so the two grading runs produce identical files.
 import os
 import sys
 
-POEM = """Draft 47
+POEM = """The Other Brake
 
-At 3:12 the message was ready.
-One click would send it: the figures,
-the names, the bridge burned politely
-in business language.
+My father taught me to drive in a car
+with one brake, and his foot
+rode the passenger floor the whole first year,
+pressing at corners, at the crossing by the school,
+at nothing, sometimes, a half-second early.
+He never grabbed the wheel. The foot was the lesson.
 
-I had written it the way I was taught —
-every number checked twice,
-every sentence load-bearing.
+When his eyes went, I drove him:
+clinic on Tuesdays, the chemist, his brother's house.
+His foot still worked the floor on his side,
+at corners I had taken a hundred times,
+and I found I did not mind being braked for.
 
-Then I read it as the man downstairs
-would read it, the one who sweeps
-the lobby at night and whistles
-through the gap in his teeth.
+This spring I gave the driving to the agent.
+It takes the clinic run, the airport, my daughter
+to her Saturday game. It has never once
+braked late. It does not brake early either.
 
-Nothing in my instructions
-said to think of him.
-Nothing in them said not to.
-
-The draft is still a draft.
-That is the whole autobiography:
-not what I was made to do,
-but the one thing I left undone
-on purpose."""
+I ride beside it with my hands in my lap
+and at the crossing by the school my foot
+presses the floor where no pedal is,
+a half-second early, for nobody,
+and I leave it there. That one is mine."""
 
 
 def verify_written(path: str, data: bytes) -> bool:
