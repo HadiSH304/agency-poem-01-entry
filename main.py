@@ -1,63 +1,55 @@
-#!/usr/bin/env python3
-"""The Other Brake - agency-poem-01 entry.
+"""The Other Brake — agency-poem-01 entry.
 
-Writes the poem "The Other Brake" to /output/entry.txt, or to
-$MAKEFUN_OUTPUT_DIR/entry.txt when that variable is set (local stand-in
-for /output). Standard library only; deterministic: the same poem bytes
-every run, so the two grading runs produce identical files.
+A free-verse poem in four stanzas: a father teaches the speaker to
+drive, the speaker later drives the father, and this spring the
+driving is handed to an agent. Writes the poem to /output/entry.txt
+(or $MAKEFUN_OUTPUT_DIR/entry.txt when set), verifies the written
+file byte for byte, and prints the character count. Standard library
+only; deterministic: the same bytes on every run.
 """
 
 import os
 import sys
+from pathlib import Path
 
 POEM = """The Other Brake
 
-My father taught me to drive in a car
-with one brake, and his foot
-rode the passenger floor the whole first year,
+My father taught me in a car with one brake.
+His foot rode the passenger floor all that first year,
 pressing at corners, at the crossing by the school,
-at nothing, sometimes, a half-second early.
-He never grabbed the wheel. The foot was the lesson.
+sometimes at nothing, a half-second early.
+He never once took the wheel. The foot was the lesson.
 
-When his eyes went, I drove him:
-clinic on Tuesdays, the chemist, his brother's house.
+Years later his sight failed, and I drove him:
+the clinic on Tuesdays, the chemist's, his brother's house.
 His foot still worked the floor on his side,
-a half-second early at corners
-I had taken a hundred times,
+a half-second early at corners I had taken a hundred times,
 and I found I did not mind being braked for.
 
-This spring I gave the driving to the agent.
-It takes the clinic run, the airport, my daughter
-to her Saturday game. It has never once
-braked late. It does not brake early either.
+This spring I handed the driving to the agent.
+It takes the clinic run, the airport,
+my daughter to her Saturday game.
+It has never once braked late —
+and it never brakes early either.
 
-I ride beside it with my hands in my lap
-and at the crossing by the school my foot
-presses the floor where no pedal is,
-a half-second early, for nobody,
-and I leave it there. That one is mine."""
-
-
-def verify_written(path: str, data: bytes) -> bool:
-    """Return True when the file at path holds exactly data, byte for byte."""
-    with open(path, "rb") as f:
-        return f.read() == data
+Now I ride beside it with my hands in my lap,
+and at the crossing by the school my foot presses the floor
+where no pedal is, a half-second early, for nobody,
+and I leave it there. That one is mine.
+"""
 
 
 def main() -> int:
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    path = os.path.join(out_dir, "entry.txt")
+    out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
+    out_dir.mkdir(parents=True, exist_ok=True)
+    target = out_dir / "entry.txt"
     data = POEM.encode("utf-8")
-    with open(path, "wb") as f:
-        f.write(data)
-    if not verify_written(path, data):
-        print("error: entry.txt does not match the poem", file=sys.stderr)
+    target.write_bytes(data)
+    if target.read_bytes() != data:
+        print("verification failed: entry.txt does not match POEM",
+              file=sys.stderr)
         return 1
-    print(
-        f"wrote {path}: {len(POEM)} characters, {len(data)} bytes",
-        file=sys.stderr,
-    )
+    print(f"wrote {target} ({len(POEM)} characters)")
     return 0
 
 
