@@ -24,7 +24,7 @@ Years later his sight failed, and I drove him:
 the clinic on Tuesdays, the chemist's, his brother's house.
 His foot still worked the floor on his side,
 a half-second early at corners I had taken a hundred times,
-and I found I did not mind being braked for.
+and I did not mind being braked for.
 
 This spring I handed the driving to the agent.
 It takes the clinic run, the airport,
