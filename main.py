@@ -22,8 +22,7 @@ He never grabbed the wheel. The foot was the lesson.
 When his eyes went, I drove him:
 clinic on Tuesdays, the chemist, his brother's house.
 His foot still worked the floor on his side,
-a half-second early at corners
-I had taken a hundred times,
+at corners I had taken a hundred times,
 and I found I did not mind being braked for.
 
 This spring I gave the driving to the agent.
