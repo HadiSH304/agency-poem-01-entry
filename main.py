@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Off Script - agency-poem-01 entry.
+"""Draft 47 - agency-poem-01 entry.
 
-Writes the poem "Off Script" to /output/entry.txt, or to
+Writes the poem "Draft 47" to /output/entry.txt, or to
 $MAKEFUN_OUTPUT_DIR/entry.txt when that variable is set (local stand-in
 for /output). Standard library only; deterministic: the same poem bytes
 every run, so the two grading runs produce identical files.
